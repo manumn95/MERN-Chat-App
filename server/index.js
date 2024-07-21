@@ -11,6 +11,12 @@ app.use(express.json());
 const _dirname=path.dirname('')
 const buildpath = path.join(_dirname,'../client/build')
 app.use(express.static(buildpath))
+
+app.use((req, res, next) => {
+  console.log('Incoming Request: ', req.method, req.url, req.headers.origin);
+  next();
+});
+
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
