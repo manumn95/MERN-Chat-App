@@ -13,7 +13,7 @@ const buildpath = path.join(_dirname,'../client/build')
 app.use(express.static(buildpath))
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
