@@ -1,6 +1,6 @@
 const express = require("express");
-const cors = require("cors");
 require("dotenv").config();
+const cors = require("cors");
 const connectDB = require("./config/connectDB");
 const router = require("./routes/index");
 const cookiesParser = require("cookie-parser");
@@ -10,9 +10,11 @@ const path = require("path");
 const _dirname = __dirname; 
 const buildpath = path.join(_dirname, "../client/build");
 
-
-console.log("Serving static files from:", buildpath);
+console.log("MONGODB_URI:", process.env.MONGODB_URI);
+console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
 console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
+console.log("BACKEND_URL:", process.env.BACKEND_URL);
+
 
 app.use(
   cors({
