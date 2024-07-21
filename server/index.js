@@ -6,6 +6,7 @@ const router = require("./routes/index");
 const cookiesParser = require("cookie-parser");
 const { app, server } = require("./socket/index");
 const path = require('path')
+const helmet = require("helmet");
 // const app = express()
 app.use(express.json());
 const _dirname=path.dirname('')
@@ -16,6 +17,22 @@ app.use((req, res, next) => {
   console.log('Incoming Request: ', req.method, req.url, req.headers.origin);
   next();
 });
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "https://your-domain.com"],
+        connectSrc: ["'self'", "http://3.27.163.215:8080"],
+        // Add other directives as needed
+      },
+    },
+  })
+);
 
 app.use(
   cors({
