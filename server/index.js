@@ -5,27 +5,22 @@ const connectDB = require("./config/connectDB");
 const router = require("./routes/index");
 const cookiesParser = require("cookie-parser");
 const { app, server } = require("./socket/index");
-const path = require('path')
+const path = require("path");
 
 // const app = express()
 app.use(express.json());
-const _dirname=path.dirname('')
-const buildpath = path.join(_dirname,'../client/build')
-app.use(express.static(buildpath))
-
-
-
-
+const _dirname = path.dirname("");
+const buildpath = path.join(_dirname, "../client/build");
+app.use(express.static(buildpath));
 
 app.use((req, res, next) => {
-  console.log('Incoming Request: ', req.method, req.url, req.headers.origin);
+  console.log("Incoming Request: ", req.method, req.url, req.headers.origin);
   next();
 });
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
+    origin: "*",
   })
 );
 
