@@ -10,15 +10,11 @@ const path = require("path");
 const _dirname = __dirname; 
 const buildpath = path.join(_dirname, "../client/build");
 
-console.log("MONGODB_URI:", process.env.MONGODB_URI);
-console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
-console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
-console.log("BACKEND_URL:", process.env.BACKEND_URL);
 
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "*",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
