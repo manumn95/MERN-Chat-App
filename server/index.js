@@ -7,12 +7,16 @@ const cookiesParser = require("cookie-parser");
 const { app, server } = require("./socket/index");
 const path = require("path");
 
-const _dirname = __dirname; // Use __dirname
+const _dirname = __dirname; 
 const buildpath = path.join(_dirname, "../client/build");
+
+
+console.log("Serving static files from:", buildpath);
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "*", // Use environment variable or default to "*"
+    origin: process.env.FRONTEND_URL || "*",
     credentials: true,
   })
 );
